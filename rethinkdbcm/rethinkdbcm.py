@@ -179,7 +179,6 @@ class WorkRethinkDB(object):
 from rethinkdbcm import WorkRethinkDB
 db = WorkRethinkDB()
 db.db_list()
-
     """
     def __init__(self, host: str = '127.0.0.1',
                  port: int = 28015) -> None:
