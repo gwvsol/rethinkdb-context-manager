@@ -4,7 +4,7 @@
 [RethinkDB-context-manager](https://github.com/gwvsol/RethinkDB-context-manager)   
 [Python ReQL command reference](https://rethinkdb.com/api/python/)    
 
-### Исспользование
+### Использование
 
 ```Python
 pip install rethinkdbcm
