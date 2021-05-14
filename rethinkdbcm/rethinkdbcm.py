@@ -7,11 +7,13 @@ from rethinkdb.errors import ReqlDriverError
 
 
 class UseRethinkDB(object):
-    """"Класс реклизующий некоторые основные методы API RethinkDB"""
+    """Класс реклизующий некоторые основные методы API RethinkDB"""
     def __init__(self, host: str = '127.0.0.1', port: int = 28015) -> None:
         self.log = logging
+        self.format = '%(asctime)s.%(msecs)d | \
+%(levelname)s | %(module)s.%(funcName)s:%(lineno)d %(message)s'
         self.log.basicConfig(level=logging.DEBUG,
-                             format='%(asctime)s:%(levelname)s:%(message)s',
+                             format=self.format,
                              datefmt='%Y-%m-%d %H:%M:%S')
         self.db = RethinkDB()
         self._host = host
@@ -128,7 +130,7 @@ class UseRethinkDB(object):
             https://rethinkdb.com/api/python/insert
         """
         try:
-            return self.db.db(name_db).table(table_name).insert(data).run()
+            return self.db.db(db_name).table(table_name).insert(data).run()
         except (ReqlOpFailedError, ReqlNonExistenceError,
                 ReqlDriverError) as err:
             self.log.error(err.args)
@@ -224,7 +226,7 @@ db.db_list()
             return db.table_drop(db_name, table_name)
 
     def get(self, db_name: str = None, table_name: str = None,
-            key_name: str = None) -> dict:
+            key_name: (int, str) = None) -> dict:
         """Получение записи из таблицы базы данных по определенному ключу"""
         with self.db(**self.conf) as db:
             return db.get(db_name, table_name, key_name)
@@ -233,16 +235,16 @@ db.db_list()
                data: dict = None) -> dict():
         """Добавление новой записи в таблицу базы данных"""
         with self.db(**self.conf) as db:
-            return db.insert(db_name, table_name, key_name, data)
+            return db.insert(db_name, table_name, data)
 
     def update(self, db_name: str = None, table_name: str = None,
-               key_name: str = None, data: dict = None) -> dict:
+               key_name: (int, str) = None, data: dict = None) -> dict:
         """Обновление записи в таблице базы данных по определенному ключу"""
         with self.db(**self.conf) as db:
             return db.update(db_name, table_name, key_name, data)
 
     def delete(self, db_name: str = None, table_name: str = None,
-               key_name: str = None) -> dict:
+               key_name: (int, str) = None) -> dict:
         """Удаление записи в таблицы базы данных по определенному ключу"""
         with self.db(**self.conf) as db:
             return db.delete(db_name, table_name, key_name)
