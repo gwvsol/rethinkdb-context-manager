@@ -7,7 +7,7 @@ __maintainer__ = 'Fedorov Mikhail'
 
 __email__ = 'jwvsol@yandex.ru'
 __license__ = 'MIT'
-__version__ = '0.1.5'
+__version__ = '0.1.6'
 __doc__ = 'RethinkDB context manager'
 
 
