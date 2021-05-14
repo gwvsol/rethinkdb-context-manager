@@ -26,7 +26,7 @@ help:
 	@echo "make uninstall	- Deleting a virtual environment, dependencies, and a built package"
 	@echo "make check	- Checking the correctness of the code writing"
 	@echo "make clean	- Cleaning up garbage"
-	@echo "make clean-release	- Deleting an old release"
+	@echo "make clean-release - Deleting an old release"
 	@echo "make upload	- Uploading a release to PyPi"              
 
 #=============================================
