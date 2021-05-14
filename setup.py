@@ -30,6 +30,7 @@ setup(
     license=module.__license__,
     description=module.__doc__,
     long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
     url='https://github.com/gwvsol/RethinkDB-context-manager',
     platforms='all',
     classifiers=[
